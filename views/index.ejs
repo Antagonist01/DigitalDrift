@@ -38,8 +38,8 @@
           <p class="post-content"><%= post.content %></p>
           <div class="post-actions">
             <a class="btn btn-edit" href="/edit/<%= post.id %>">✏️ Edit</a>
-            <a class="btn btn-delete" href="/posts/delete/<%= post.id %>"
-               onclick="return confirm('Delete this post?')">🗑 Delete</a>
+            <div class="post-actions">
+            <a href="/posts/delete/<%= post.id %>" class="btn btn-delete">Delete</a>
           </div>
         </li>
       <% }); %>
