@@ -99,15 +99,8 @@ app.post("/posts/:id", async (req, res) => {
   }
 });
 
-app.get("/posts/delete/:id", async (req, res) => {
-  try {
-    const sql = getDB();
-    await sql`DELETE FROM posts WHERE id = ${req.params.id}`;
-    res.redirect("/");
-  } catch (err) {
-    console.error("DELETE error:", err.message);
-    res.status(500).render("error", { message: err.message });
-  }
+app.get("/posts/delete/:id", (req, res) => {
+  res.status(403).render("error", { message: "You are not allowed to delete posts." });
 });
 
 // ── Start locally ──────────────────────────────────────────────────────────────
