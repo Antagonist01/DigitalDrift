@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/styles/main.css"/>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="site-title">✦ My Blog</h1>
+      <a class="btn btn-new" href="/new">+ New Post</a>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <% if (posts.length === 0) { %>
+      <div class="empty-state">
+        <p class="empty-icon">📝</p>
+        <p>No posts yet. Be the first to write something!</p>
+        <a href="/new" class="btn btn-new" style="margin-top:16px;">Create a Post</a>
+      </div>
+    <% } %>
+
+    <ul class="posts-list">
+      <% posts.forEach(post => { %>
+        <li class="post-card">
+          <div class="post-meta-top">
+            <span class="post-author">✦ <%= post.author %></span>
+            <span class="post-date"><%= fmtDate(post.date) %></span>
+          </div>
+          <h2 class="post-title"><%= post.title %></h2>
+          <p class="post-content"><%= post.content %></p>
+          <div class="post-actions">
+            <a class="btn btn-edit" href="/edit/<%= post.id %>">✏️ Edit</a>
+            <a class="btn btn-delete" href="/posts/delete/<%= post.id %>"
+               onclick="return confirm('Delete this post?')">🗑 Delete</a>
+          </div>
+        </li>
+      <% }); %>
+    </ul>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Built with Express · EJS · Neon PostgreSQL 🌸</p>
+  </footer>
+
+</body>
+</html>
